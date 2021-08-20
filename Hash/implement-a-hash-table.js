@@ -4,6 +4,7 @@ class HashTable {
     this.data = new Array(size);
   }
   // Simple hashing function
+  // O(1)
   _hash(key) {
     let hash = 0;
     for (let i = 0; i < key.length; i++) {
@@ -12,6 +13,7 @@ class HashTable {
     return hash;
   }
   
+  // O(1)
   set(key, value) {
     let address = this._hash(key);
     if (!this.data[address]){
@@ -23,6 +25,8 @@ class HashTable {
     return this.data[address];
   }
 
+  // Most of the time O(1), if no collisions.
+  // But if collisions, still very small amount of loop iterations
   get(key) {
     const address = this._hash(key);
     const currentBucket = this.data[address];

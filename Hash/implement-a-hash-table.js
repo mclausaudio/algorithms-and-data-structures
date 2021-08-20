@@ -27,6 +27,7 @@ class HashTable {
 
   // Most of the time O(1), if no collisions.
   // But if collisions, still very small amount of loop iterations
+  // Worst case, can become O(n)
   get(key) {
     const address = this._hash(key);
     const currentBucket = this.data[address];
@@ -40,6 +41,24 @@ class HashTable {
     }
 
     return undefined;
+  }
+
+  keys() {
+    const keysArray = [];
+    for (let i=0; i < this.data.length; i++) {
+      // If this memory shelf has things in it
+      if (this.data[i] && this.data[i].length) {
+        // Loop over the shelf
+        if (this.data[i].length > 1) {
+          for(let j =0; j < this.data[i].length; j++) {
+            keysArray.push(this.data[i][j][0])
+          }
+        } else {
+          keysArray.push(this.data[i][0][0])
+        }
+      }
+    }
+    return keysArray
   }
 }
 
@@ -58,3 +77,5 @@ console.log( myHashTable.get("tapes") );
 // => 200
 console.log( myHashTable.get("cables") );
 // => 300
+console.log( myHashTable.keys() )
+// => [ 'grapes', 'cables', 'tapes' ]

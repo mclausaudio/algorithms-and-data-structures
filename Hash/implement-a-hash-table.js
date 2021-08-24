@@ -1,4 +1,9 @@
-
+// Implement my own hash table
+// 
+// Search: O(1)
+// Insert: O(1)
+// Lookup: O(1)
+// Delete: O(1)
 class HashTable {
   constructor(size){
     this.data = new Array(size);
